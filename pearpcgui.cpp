@@ -17,24 +17,16 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <stdio.h>
+#include <iostream>
+#include <string>
 
+#include "configparser.h"
 
+using namespace std;
 
 int main ()
 {
-	//CONF conf;
-	char *szpath;
-	
-	//load_default(&conf);
-	
-	//printf("Resolution = %s",conf.resolution);
-	printf("Enter Path : ");
-	gets(szpath);
-	printf("Entered Path = %s",szpath);
-	//save_conf(&conf,szpath);
-	
-	printf("File Writen");
+	cout << "Hello World!";
 	
 	return 0;
 }
