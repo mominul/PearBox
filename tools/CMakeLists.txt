@@ -5,5 +5,5 @@
 
 add_library(libtools
 	atom.cc data.cc debug.cc except.cc file.cc snprintf.cc
-	str.cc stream.cc strtools.cc sys.cc 
+	str.cc stream.cc strtools.cc sys.cc sysfile.cc
 	)

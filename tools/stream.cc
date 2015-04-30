@@ -34,6 +34,7 @@
 #include "sys.h"
 #include "snprintf.h"
 #include "stream.h"
+#include "sysfile.h"
 
 /*
  *	Listener
