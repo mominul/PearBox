@@ -17,10 +17,10 @@
 #target_link_libraries(PearPCGUI ${GTK3_LIBRARIES})
 
 cmake_minimum_required (VERSION 2.6)
-project (pearpcgui)
+project (PearPC_Virtual_Machine_Manager)
 include_directories(tools)
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/tools)
 add_subdirectory(tools)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
-add_executable(PearPCGui pearpcgui.cpp configparser.cc)
-target_link_libraries(PearPCGui libtools)
+add_executable(PearPCVMM pearpcgui.cpp configuration.cpp configparser.cc)
+target_link_libraries(PearPCVMM libtools)
