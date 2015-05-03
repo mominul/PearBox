@@ -21,17 +21,12 @@
 
 #ifndef __TYPES_H__
 #define __TYPES_H__
-/*
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif */
 
-//#ifdef HAVE_STDINT_H
-#include <stdint.h>
-//#else
-//#include <inttypes.h>
-//#endif /* HAVE_STDINT_H */
-#include <sys/types.h>
+//#ifdef HAVE_CONFIG_H
+#include "../config.h"
+//#endif
+
+
 
 #ifdef MIN
 #undef MIN
@@ -71,6 +66,13 @@
  */
 
 //#include SYSTEM_OSAPI_SPECIFIC_TYPES_HDR
+#if defined (__unix__) || (defined (__APPLE__) && defined (__MACH__)) || defined (__linux__)
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#else
+#include <inttypes.h>
+#endif /* HAVE_STDINT_H */
+#include <sys/types.h>
 
 typedef uint8_t uint8;
 typedef uint16_t uint16;
@@ -85,7 +87,7 @@ typedef int64_t sint64;
 typedef signed int	sint;
 
 typedef uint8		byte;
-
+#endif
 /*
  *	NULL
  */

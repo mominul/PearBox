@@ -18,6 +18,7 @@
  */
 
 #include <fstream>
+//#include <iomanip>
 
 #include "configuration.h"
 
@@ -186,10 +187,10 @@ bool save_config ( CONF& cnf, String path )
 		fout << "prom_env_machargs = \"" << cnf.machargs.contentChar() << "\"" << endl;
 		fout << "prom_driver_graphic = \"" << cnf.driver_graph.contentChar() << "\"" << endl;
 		/*                               CPU                                         */
-		fout << "cpu_pvr = " << cnf.pvr << endl;
-		fout << "page_table_pa = " << cnf.pagetable << endl;
+		fout << "cpu_pvr = " << hex << cnf.pvr << endl;
+		fout << "page_table_pa = " << hex << cnf.pagetable << endl;
 		/*                             Memory                                        */
-		fout << "memory_size = " << cnf.memory << endl;
+		fout << "memory_size = " << hex << cnf.memory << endl;
 		/*                               IDE                                         */
 		fout << "pci_ide0_master_installed = " << cnf.ide0 << endl;
 		fout << "pci_ide0_master_image = \"" << cnf.ide0_path.contentChar() << "\"" << endl;

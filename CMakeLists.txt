@@ -18,6 +18,12 @@
 
 cmake_minimum_required (VERSION 2.6)
 project (PearPC_Virtual_Machine_Manager)
+include (CheckIncludeFiles)
+check_include_files (stdint.h HAVE_STDINT_H)
+configure_file (
+  "${PROJECT_SOURCE_DIR}/config.h.in"
+  "${PROJECT_SOURCE_DIR}/config.h"
+  )
 include_directories(tools)
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/tools)
 add_subdirectory(tools)
