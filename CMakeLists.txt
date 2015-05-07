@@ -25,6 +25,6 @@ add_subdirectory(tools)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
-add_executable(PearBox pearbox.cpp configuration.cpp configparser.cc)
+add_executable(PearBox pearbox.cpp configuration.cpp createimage.cpp configparser.cc)
 qt5_use_modules(PearBox Widgets)
 target_link_libraries(PearBox libtools)

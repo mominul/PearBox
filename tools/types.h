@@ -56,7 +56,7 @@
 #	define DEPRECATED	__attribute__((deprecated))
 #	define NORETURN		__attribute__((noreturn))
 #	define ALIGN_STRUCT(n)	__attribute__((aligned(n)))
-#	define FORCE_INLINE	__attribute__((always_inline)) 
+#	define FORCE_INLINE	__attribute__((always_inline))
 #else
 #	error "you're not using the GNU C compiler :-( please add the macros and conditionals for your compiler"
 #endif /* !__GNUC__ */

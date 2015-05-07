@@ -18,16 +18,17 @@
  */
 
 #include <exception>
-#include <QApplication>
-#include <QPushButton>
+//#include <QApplication>
+//#include <QPushButton>
 
 #include "configuration.h"
+#include "createimage.h"
 #include "tools/snprintf.h"
 
 
 int main ( int argc, char *argv[] )
 {
-	/*bool ret;
+	bool ret;
 	CONF conf;
 
 	ret = load_config(conf,"/home/mominul/src/ppccfg.ppc");
@@ -38,14 +39,17 @@ int main ( int argc, char *argv[] )
 	ht_printf("\nmemory = %d\n",&conf.memory);
 
 	ret = save_config(conf,"/home/mominul/src/newcfg.ppc");
-	ret = load_config(conf,"/home/mominul/src/newcfg.ppc");*/
-	//String path = "/home/mominul/src/ppccfg.ppc";
+	ret = load_config(conf,"/home/mominul/src/newcfg.ppc");
+	//String path = "/home/mominul/src/newcfg.ppc";
 	//ht_printf("\nkey_compose_dialog = %s",key_compose_dialog_string.contentChar());
 
-  QApplication app(argc, argv);
+  ret = Create_HD_Image(1024,"/home/mominul/src/HD1.img",false);
+  ret = Create_HD_Image(41984,"/home/mominul/src/HD2.img",true);
+
+  /*QApplication app(argc, argv);
   QPushButton *button = new QPushButton("Quit");
   QObject::connect(button, SIGNAL(clicked()),
                    &app, SLOT(quit()));
-  button->show();
-  return app.exec();
+  button->show();*/
+  return 0; // app.exec();
 }
