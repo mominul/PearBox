@@ -1,5 +1,7 @@
-/*    
- *  PearPC Virtual Machine Manager - configuration.cpp
+/*
+ *  PearBox
+ *  configuration.cpp
+ *
  *  Copyright (C) 2015 Muhammad Mominul Huque
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -18,7 +20,6 @@
  */
 
 #include <fstream>
-//#include <iomanip>
 
 #include "configuration.h"
 
@@ -31,7 +32,7 @@ using namespace std;
 bool load_config ( CONF& config, String path )
 {
 	bool bRet = false;
-	/* Load Configuration from path */ 
+	/* Load Configuration from path */
 	try {
 		gConfig = new ConfigParser();
 		/*                         Screen                            */
@@ -74,7 +75,7 @@ bool load_config ( CONF& config, String path )
 		gConfig->acceptConfigEntryIntDef("pci_serial_installed", 0);
 		/*                         NVRAM                              */
 		gConfig->acceptConfigEntryStringDef("nvram_file", "nvram");
-		
+
 		try {
 			LocalFile *config;
 			config = new LocalFile(path);
@@ -87,9 +88,9 @@ bool load_config ( CONF& config, String path )
 			bRet = false;
 			exit(1);
 		}
-	
+
 	ht_printf("\n[LOAD 1] Configuration loaded successfully from '%y'\n",&path);
-	
+
 	/*             Save configuration in 'config' struct                */
 	/*                          Screen                                  */
 	gConfig->getConfigString("ppc_start_resolution", config.resolution);
@@ -100,8 +101,8 @@ bool load_config ( CONF& config, String path )
 	/*                           CPU                                    */
 	config.pvr = gConfig->getConfigInt("cpu_pvr");
 	config.pagetable = gConfig->getConfigInt("page_table_pa");
-	/*                         Key Codes                                */   
-	gConfig->getConfigString("key_compose_dialog", config.compose_dialog);	
+	/*                         Key Codes                                */
+	gConfig->getConfigString("key_compose_dialog", config.compose_dialog);
 	gConfig->getConfigString("key_change_cd_0", config.change_cd);
 	gConfig->getConfigString("key_toggle_mouse_grab", config.mouse_grab);
 	gConfig->getConfigString("key_toggle_full_screen", config.fullscreen_k);
@@ -135,10 +136,10 @@ bool load_config ( CONF& config, String path )
 	config.serial = gConfig->getConfigInt("pci_serial_installed");
 	/*                           NVRAM                                  */
 	gConfig->getConfigString("nvram_file", config.nvram);
-	
+
 	bRet = true; // Loaded successfully
 	ht_printf("\n[LOAD 2] Configuration stored successfully\n");
-	
+
 	}catch (const std::exception &e) {
 		bRet = false;
 		ht_printf("\n[ERROR/LOAD] load_config() caught exception: %s\n", e.what());
@@ -161,7 +162,7 @@ bool save_config ( CONF& cnf, String path )
 {
 	ofstream fout;
 	bool bRet = false;
-	
+
 	fout.open(path.contentChar(),ios::out);
 	fout.exceptions ( ifstream::failbit | ifstream::badbit );
 	try{
@@ -209,9 +210,9 @@ bool save_config ( CONF& cnf, String path )
 		fout << "pci_serial_installed = " << cnf.serial << endl;
 		/*                             NVRAM                                         */
 		fout << "nvram_file = \"" << cnf.nvram.contentChar() << "\"" << endl;
-	
+
 		fout.close();
-		
+
 		ht_printf("\n[SAVE] Configuration file '%y' saved successfully.\n",&path);
 		bRet = true;
 	}catch (ifstream::failure e) {
@@ -219,6 +220,6 @@ bool save_config ( CONF& cnf, String path )
 		           Because a error occursed when opening/writing the configuration file\n",&path);
 		bRet = false;
 	}
-	
+
 	return bRet;
 }

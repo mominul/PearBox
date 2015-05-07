@@ -1,5 +1,5 @@
-/*    
- *  PearPC GUI
+/*
+ *  PearBox
  *  Copyright (C) 2015 Muhammad Mominul Huque
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -17,33 +17,35 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <iostream>
-//#include <string>
 #include <exception>
+#include <QApplication>
+#include <QPushButton>
 
 #include "configuration.h"
 #include "tools/snprintf.h"
 
-using namespace std;
-
-
 
 int main ( int argc, char *argv[] )
 {
-	bool ret;
+	/*bool ret;
 	CONF conf;
-	
+
 	ret = load_config(conf,"/home/mominul/src/ppccfg.ppc");
-	
+
 	ht_printf("\nCompose Dialog = %y\n",&conf.compose_dialog);
 	ht_printf("\n3x mac = %y\n",&conf.net_3c_mac);
 	ht_printf("\npvr = %d\n",&conf.pvr);
 	ht_printf("\nmemory = %d\n",&conf.memory);
-	
-	cout << "\"Hello\"" << endl;
+
 	ret = save_config(conf,"/home/mominul/src/newcfg.ppc");
-	ret = load_config(conf,"/home/mominul/src/newcfg.ppc");
+	ret = load_config(conf,"/home/mominul/src/newcfg.ppc");*/
 	//String path = "/home/mominul/src/ppccfg.ppc";
 	//ht_printf("\nkey_compose_dialog = %s",key_compose_dialog_string.contentChar());
-	return 0;
+
+  QApplication app(argc, argv);
+  QPushButton *button = new QPushButton("Quit");
+  QObject::connect(button, SIGNAL(clicked()),
+                   &app, SLOT(quit()));
+  button->show();
+  return app.exec();
 }
