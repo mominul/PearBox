@@ -45,7 +45,7 @@
  */
 
 /* TODO:
- * - Add Endianness Code to remove hack (BX_LITTLE_ENDIAN)
+ * - Add code for Big Endian systems
  * - Fix fatal in fileset()
  */
 
@@ -64,8 +64,9 @@ const int bx_max_hd_megs = (int)(((1 << BX_MAX_CYL_BITS) - 1) * 16.0 * 63.0 / 20
 
 typedef bool (*WRITE_IMAGE)(FILE*, uint64);
 
-// Hack Hack Hack! TODO: Check by cmake to sure about endianness
-#define BX_LITTLE_ENDIAN 1 // Host is Little Endian (x86) Hack ^^
+#ifndef __BIG_ENDIAN__  // GCC 4.x
+#define BX_LITTLE_ENDIAN 1 // Host is Little Endian (x86...etc)
+#endif
 
 /*               From hdimage.h(Bochs)               */
 // SPARSE IMAGES HEADER
@@ -239,25 +240,7 @@ bool make_image(uint64 sec, char *filename, WRITE_IMAGE write_image)
     printf("\nERROR: while writing disk image!");
     return bRet;
   }
-  /*if (!sparse){
-    if(make_flat_image(fp, sec) != true){
-      bRet = false;
-      printf("\nERROR: while writing disk image!");
-      return bRet
-    }else {
-      goto image_ok;
-    }
-  }else{
-    if(make_sparse_image(fp, sec) != true) {
-      bRet = false;
-      printf("\nERROR: while writing disk image!");
-      return bRet
-    }else{
-      goto image_ok;
-    }
-  }*/
 
-//image_ok:
   fclose(fp);
   bRet = true; // File Created!
   return bRet;
